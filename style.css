@@ -16,3 +16,137 @@
     white-space: nowrap;
     border-width: 0;
 }
+
+:root{
+    font-size: clamp(40%, 1% + 2vw, 62.5%);
+
+    --hue: 194;
+
+    --bg-color:hsl(194, 5%, 7%);
+    --text-color: hsl(194, 40%, 98%);
+    --bg-button:#363636;
+    --bg-button-select:#02799D;
+}
+
+html.light{
+    --text-color:hsl(194, 5%, 7%);
+    --bg-color: hsl(194, 40%, 98%);
+    --bg-button:#E1E1E6;
+}
+
+body{
+    height: 100vh;
+    background-color: var(--bg-color);
+
+    display: grid;
+    place-content: center;
+    font-family: sans-serif;
+}
+
+#toggle-mode{
+    position: absolute;
+    right: 3.2rem;
+    top:3.2rem;
+    font-size: 3.2rem;
+    line-height: 0;
+    color: var(--text-color);
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#toggle-mode:hover{
+    color: var(--bg-button-select);
+}
+
+#app{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+    gap: 10rem;
+}
+
+#timer-wrapper{
+    display: grid;
+    place-content: center;
+}
+
+#timer{
+    font-size: 9.6rem;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: var(--text-color);
+}
+
+#controls{
+    text-align: center;
+    color: var(--text-color);
+    gap: 1.6rem;    
+}
+
+#sounds-wrapper{
+    display: grid;
+    grid-template-columns: 15rem 15rem;
+    grid-template-rows: 15rem 15rem;
+    align-items: stretch;
+    place-content: center;
+}
+
+#sounds-wrapper button{
+    width: 14rem;
+    height: 14rem;
+    color: var(--text-color);
+    background-color: var(--bg-button);
+    border-radius: 2rem;
+}
+
+#sounds-wrapper button:hover{
+    background-color: var(--bg-button-select);
+    color: var(--text-color);
+}
+
+button{
+    background-color: transparent;
+    border: 0;
+    color: var(--controls-bg-color);
+
+    cursor: pointer;
+
+    font-size: 6.4rem;
+}
+
+button:hover{
+    color: var(--bg-button-select);
+}
+
+/* Lógica */
+
+html.light .ph-sun,
+html:not(.light) .ph-moon{
+    display: none;
+}
+
+.running .ph-play-circle,
+html:not(.running) .ph-pause-circle{
+    display: none;
+}
+
+.florest #sounds-wrapper .ph-tree,
+.rain #sounds-wrapper .ph-cloud-rain,
+.coffee #sounds-wrapper .ph-coffee,
+.flame #sounds-wrapper .ph-flame{
+    background-color: var(--bg-button-select);
+    color: var(--bg-button);
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 500px) {
+    #app{
+        display: grid;
+        place-content: center;
+        gap: 2rem;
+    }
+}
