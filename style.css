@@ -81,9 +81,11 @@ body{
 }
 
 #controls{
-    text-align: center;
     color: var(--text-color);
-    gap: 1.6rem;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
 }
 
 #sounds-wrapper{
@@ -148,5 +150,19 @@ html:not(.running) .ph-pause-circle{
         display: grid;
         place-content: center;
         gap: 2rem;
+    }
+
+    #sounds-wrapper{
+        grid-template-columns: 10rem 10rem;
+        grid-template-rows: 10rem 10rem;
+    }
+    
+    #sounds-wrapper button{
+        width: 9rem;
+        height: 9rem;
+        font-size: 4rem;
+        color: var(--text-color);
+        background-color: var(--bg-button);
+        border-radius: 2rem;
     }
 }
