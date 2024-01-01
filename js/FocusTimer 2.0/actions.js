@@ -1,5 +1,6 @@
 import state from './state.js'
 import * as timer from './timer.js'
+import * as elements from './elements.js'
 
 export function toggleRunning(){
     state.isRunning = document.documentElement.classList.toggle('running');
@@ -15,11 +16,15 @@ export function reset(){
 }
 
 export function plusFiveMinutes(){
-    console.log("função plusFiveMinutes");
+    elements.minutes.textContent = String(Number(elements.minutes.textContent) + 5).padStart(2, "0");
 }
 
 export function minusFiveMinutes(){
-    console.log("função minusFiveMinutes");
+    if(Number(elements.minutes.textContent) > 0){
+        elements.minutes.textContent = String(Number(elements.minutes.textContent) - 5).padStart(2, "0");
+        return
+    }
+    return
 }
 
 export function listenTo(sound){
