@@ -16,12 +16,21 @@ export function reset(){
 }
 
 export function plusFiveMinutes(){
-    elements.minutes.textContent = String(Number(elements.minutes.textContent) + 5).padStart(2, "0");
+    if(Number(elements.minutes.textContent) < 60){
+        let minutesPlus = Number(elements.minutes.textContent) + 5;
+        state.minutes = minutesPlus;
+        timer.updateDisplay();
+        return
+    }
+    return
 }
 
 export function minusFiveMinutes(){
-    if(Number(elements.minutes.textContent) > 0){
-        elements.minutes.textContent = String(Number(elements.minutes.textContent) - 5).padStart(2, "0");
+    console.log(state.minutes)
+    if(state.minutes > 0){
+        let minutesMinus = Number(elements.minutes.textContent) - 5;
+        state.minutes = minutesMinus;
+        timer.updateDisplay();
         return
     }
     return
