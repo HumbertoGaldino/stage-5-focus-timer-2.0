@@ -1,9 +1,16 @@
+import state from './state.js'
+import * as timer from './timer.js'
+
 export function toggleRunning(){
-    console.log("função toggleRunning");
+    state.isRunning = document.documentElement.classList.toggle('running');
+
+    timer.countdown()
 }
 
 export function reset(){
-    console.log("função reset");
+    state.isRunning = false;
+
+    document.documentElement.classList.remove('running');
 }
 
 export function plusFiveMinutes(){
@@ -15,20 +22,31 @@ export function minusFiveMinutes(){
 }
 
 export function listenTo(sound){
-    console.log(`função listenTo recebeu o som ${sound}`);
+    state.isMute = document.documentElement.classList.toggle('music-on');
+    
+    if(state.soundSelected === sound){
+        state.isMute = true;
+        state.soundSelected = undefined;
+        document.documentElement.classList.remove('music-on');
+        return
+    }
 
     switch(sound){
         case 'forest':
             console.log(`O som ${sound} está tocando`);
+            state.soundSelected = sound;
             break;
         case 'rain':
             console.log(`O som ${sound} está tocando`);
+            state.soundSelected = sound;
             break;
         case 'coffee':
             console.log(`O som ${sound} está tocando`);
+            state.soundSelected = sound;
             break;
         case 'fireplace':
             console.log(`O som ${sound} está tocando`);
+            state.soundSelected = sound;
             break;
         default:
             console.log(`Desculpe, o som ${sound} não existe.`);

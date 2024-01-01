@@ -5,7 +5,7 @@ export function registerControls(){
     elements.controls.addEventListener('click', (event) => {
         const action = event.target.dataset.action;
 
-        if(action === undefined){
+        if(typeof actions[action] != 'function'){
             return
         }
 
@@ -16,7 +16,7 @@ export function registerControls(){
         const action = event.target.dataset.action;
         const sound = event.target.dataset.sound;
         
-        if(action === undefined){
+        if(typeof actions[action] != 'function'){
             return
         }
 
