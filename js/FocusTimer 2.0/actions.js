@@ -1,14 +1,18 @@
 import state from './state.js'
 import * as timer from './timer.js'
 import * as elements from './elements.js'
+import * as sounds from './sounds.js';
 
 export function toggleRunning(){
+    sounds.buttonPressAudio.play();
     state.isRunning = document.documentElement.classList.toggle('running');
 
     timer.countdown()
+    
 }
 
 export function reset(){
+    sounds.buttonPressAudio.play();
     state.isRunning = false;
 
     document.documentElement.classList.remove('running');
@@ -16,6 +20,7 @@ export function reset(){
 }
 
 export function plusFiveMinutes(){
+    sounds.buttonPressAudio.play();
     if(Number(elements.minutes.textContent) < 60){
         let minutesPlus = Number(elements.minutes.textContent) + 5;
         state.minutes = minutesPlus;
@@ -26,8 +31,9 @@ export function plusFiveMinutes(){
 }
 
 export function minusFiveMinutes(){
-    console.log(state.minutes)
+    sounds.buttonPressAudio.play();
     if(state.minutes > 0){
+        
         let minutesMinus = Number(elements.minutes.textContent) - 5;
         state.minutes = minutesMinus;
         timer.updateDisplay();
@@ -36,31 +42,40 @@ export function minusFiveMinutes(){
     return
 }
 
-export function listenTo(sound){
-    state.isMute = document.documentElement.classList.toggle('music-on');
-    
-    if(state.soundSelected === sound){
+export function listenTo(sound){ 
+    const stateSound = state.soundSelected;
+
+    if(stateSound == sound){
         state.isMute = true;
         state.soundSelected = undefined;
         document.documentElement.classList.remove('music-on');
+        sounds[sound].pause();
         return
+    }
+
+    if(stateSound != undefined){
+        sounds.resetSounds();
     }
 
     switch(sound){
         case 'forest':
-            console.log(`O som ${sound} está tocando`);
+            state.isMute = document.documentElement.classList.add('music-on');
+            sounds.forest.play();
             state.soundSelected = sound;
             break;
         case 'rain':
-            console.log(`O som ${sound} está tocando`);
+            state.isMute = document.documentElement.classList.add('music-on');
+            sounds.rain.play();
             state.soundSelected = sound;
             break;
         case 'coffee':
-            console.log(`O som ${sound} está tocando`);
+            state.isMute = document.documentElement.classList.add('music-on');
+            sounds.coffee.play();
             state.soundSelected = sound;
             break;
         case 'fireplace':
-            console.log(`O som ${sound} está tocando`);
+            state.isMute = document.documentElement.classList.add('music-on');
+            sounds.fireplace.play();
             state.soundSelected = sound;
             break;
         default:
