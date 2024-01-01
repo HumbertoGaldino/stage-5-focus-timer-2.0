@@ -44,41 +44,53 @@ export function minusFiveMinutes(){
 
 export function listenTo(sound){ 
     const stateSound = state.soundSelected;
+    
 
     if(stateSound == sound){
         state.isMute = true;
         state.soundSelected = undefined;
         document.documentElement.classList.remove('music-on');
+        resetClassSounds();
         sounds[sound].pause();
         return
     }
 
     if(stateSound != undefined){
         sounds.resetSounds();
+        resetClassSounds()
     }
 
     switch(sound){
         case 'forest':
             state.isMute = document.documentElement.classList.add('music-on');
+            elements.forestSound.classList.add('select');
             sounds.forest.play();
             state.soundSelected = sound;
             break;
         case 'rain':
             state.isMute = document.documentElement.classList.add('music-on');
+            elements.rainSound.classList.add('select');
             sounds.rain.play();
             state.soundSelected = sound;
             break;
         case 'coffee':
             state.isMute = document.documentElement.classList.add('music-on');
+            elements.coffeeSound.classList.add('select');
             sounds.coffee.play();
             state.soundSelected = sound;
             break;
         case 'fireplace':
             state.isMute = document.documentElement.classList.add('music-on');
+            elements.fireSound.classList.add('select');
             sounds.fireplace.play();
             state.soundSelected = sound;
             break;
-        default:
-            console.log(`Desculpe, o som ${sound} não existe.`);
         }
+}
+
+export function resetClassSounds(){
+    elements.forestSound.classList.remove('select');
+    elements.rainSound.classList.remove('select');
+    elements.coffeeSound.classList.remove('select');
+    elements.fireSound.classList.remove('select');
 }

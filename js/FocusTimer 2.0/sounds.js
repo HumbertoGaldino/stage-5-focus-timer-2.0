@@ -10,6 +10,11 @@ export const forest = new Audio('./assets/Floresta.wav');
 
 export const fireplace = new Audio('./assets/Lareira.wav');
 
+forest.loop = true
+rain.loop = true
+coffee.loop = true
+fireplace.loop = true
+
 export function resetSounds() {
     coffee.pause();
     rain.pause();

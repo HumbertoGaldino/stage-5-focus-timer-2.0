@@ -136,10 +136,10 @@ html:not(.running) .ph-pause-circle{
     display: none;
 }
 
-.florest #sounds-wrapper .ph-tree,
-.rain #sounds-wrapper .ph-cloud-rain,
-.coffee #sounds-wrapper .ph-coffee,
-.flame #sounds-wrapper .ph-flame{
+.music-on #sounds-wrapper .ph-tree.select,
+.music-on #sounds-wrapper .ph-cloud-rain.select,
+.music-on #sounds-wrapper .ph-coffee.select,
+.music-on #sounds-wrapper .ph-flame.select{
     background-color: var(--bg-button-select);
     color: var(--bg-button);
 }
